@@ -2,6 +2,9 @@
 
 # --- Javelin OS Autostart Script ---
 
+# Kill existing processes to prevent duplicates on session restart
+killall -q dunst picom nm-applet pa-applet blueman-applet xfce4-power-manager
+
 # Set environment variable for consistent Qt5 themeing
 export QT_QPA_PLATFORMTHEME=qt5ct
 
@@ -11,19 +14,19 @@ numlockx on &
 # Start the notification daemon
 dunst &
 
-# Compositor for transparency and VSync
-picom &
+# Compositor for transparency, shadows, and VSync
+picom --daemon &
 
 # Wallpaper and desktop icon manager
 pcmanfm --desktop &
 
 # --- System Tray Applets ---
 nm-applet &
-volumeicon &
+pa-applet &
 blueman-applet &
 
 # Power manager (for laptops and desktops)
 xfce4-power-manager &
 
-# Set a default lockscreen wallpaper for betterlockscreen
-betterlockscreen -u /usr/share/backgrounds/devuan/devuan-mesh-dark.png &
+# Screen locker integrated with the login manager
+light-locker &

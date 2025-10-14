@@ -3,11 +3,11 @@
 # --- Essential Launchers ---
 key "Super+t"       alacritty
 key "Super+f"       pcmanfm
-# Use Rofi for a powerful, searchable application launcher
 key "Super+d"       rofi -show drun -show-icons
 
 # --- Screen Locker ---
-key "Super+l"       betterlockscreen -l
+# Uses light-locker for integration with lightdm
+key "Super+l"       light-locker-command -l
 
 # --- Window Management ---
 key "Super+Up"      fmax
@@ -16,7 +16,6 @@ key "Super+Right"   fright
 key "Super+Down"    frestore
 
 # --- Hardware Keys (Volume & Brightness) ---
-# Requires pactl (from pipewire-pulse) and xbacklight
 key "XF86AudioRaiseVolume"  pactl set-sink-volume @DEFAULT_SINK@ +5%
 key "XF86AudioLowerVolume"  pactl set-sink-volume @DEFAULT_SINK@ -5%
 key "XF86AudioMute"         pactl set-sink-mute @DEFAULT_SINK@ toggle
@@ -24,4 +23,7 @@ key "XF86MonBrightnessUp"   xbacklight -inc 10
 key "XF86MonBrightnessDown" xbacklight -dec 10
 
 # --- Screenshots ---
-key "Print"         flameshot gui
+# Full screen screenshot
+key "Print"         xfce4-screenshooter -f -s ~/Pictures
+# Area selection screenshot
+key "Shift+Print"   xfce4-screenshooter -r -s ~/Pictures
