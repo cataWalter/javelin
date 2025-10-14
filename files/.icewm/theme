@@ -1,0 +1,5 @@
+# A simple, clean theme for IceWM
+Theme="Javelin/default.theme"
+TitleFontName="sans:size=10:bold"
+MenuFontName="sans:size=10"
+StatusFontName="sans:size=10"

@@ -1,0 +1,31 @@
+# --- Javelin OS: IceWM Preferences ---
+
+# --- Theme and Appearance ---
+Theme="materia/Materia"
+# Use modern, readable fonts
+TitleFontName="Noto Sans:size=10:bold"
+MenuFontName="Noto Sans:size=10"
+StatusFontName="Noto Sans:size=10"
+NormalButtonFontName="Noto Sans:size=10"
+ActiveButtonFontName="Noto Sans:size=10:bold"
+# Add a subtle modern touch
+CornerRadius=5
+
+# --- Focus and Behavior ---
+FocusMode="FocusSloppy"
+RaiseOnFocus=1
+OpaqueMove=1
+OpaqueResize=1
+ShowMoveSize=1
+
+# --- Taskbar Settings ---
+ShowTaskBar=1
+TaskBarAtTop=0 # 0=bottom, 1=top
+# A more user-friendly clock format (e.g., "Tuesday, October 14, 02:30 PM")
+TimeFormat="%A, %B %d, %I:%M %p"
+TaskBarClockToolTip="%A, %B %d, %Y"
+
+# --- Workspace Settings ---
+ShowWorkspaceSwitcher=1
+# Give workspaces user-friendly names
+WorkspaceNames=" 1:Web ", " 2:Files ", " 3:Work ", " 4:Term "

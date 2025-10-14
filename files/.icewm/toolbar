@@ -1,0 +1,4 @@
+# Toolbar Programs
+prog "Web Browser" /usr/share/icons/Papirus/48x48/apps/firefox.svg firefox-esr
+prog "File Manager" /usr/share/icons/Papirus/48x48/apps/system-file-manager.svg pcmanfm
+prog "Terminal" /usr/share/icons/Papirus/48x48/apps/utilities-terminal.svg alacritty

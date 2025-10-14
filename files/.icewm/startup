@@ -1,0 +1,29 @@
+#!/bin/sh
+
+# --- Javelin OS Autostart Script ---
+
+# Set environment variable for consistent Qt5 themeing
+export QT_QPA_PLATFORMTHEME=qt5ct
+
+# Ensure NumLock is on at login
+numlockx on &
+
+# Start the notification daemon
+dunst &
+
+# Compositor for transparency and VSync
+picom &
+
+# Wallpaper and desktop icon manager
+pcmanfm --desktop &
+
+# --- System Tray Applets ---
+nm-applet &
+volumeicon &
+blueman-applet &
+
+# Power manager (for laptops and desktops)
+xfce4-power-manager &
+
+# Set a default lockscreen wallpaper for betterlockscreen
+betterlockscreen -u /usr/share/backgrounds/devuan/devuan-mesh-dark.png &
