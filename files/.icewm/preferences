@@ -1,31 +1,36 @@
 # --- Javelin OS: IceWM Preferences ---
 
 # --- Theme and Appearance ---
-Theme="materia/Materia"
+# Use our custom "Javelin-Dark" theme for a modern, flat look
+Theme="Javelin-Dark"
+
 # Use modern, readable fonts
 TitleFontName="Noto Sans:size=10:bold"
 MenuFontName="Noto Sans:size=10"
 StatusFontName="Noto Sans:size=10"
 NormalButtonFontName="Noto Sans:size=10"
 ActiveButtonFontName="Noto Sans:size=10:bold"
-# Add a subtle modern touch
-CornerRadius=5
+NormalTaskBarFontName="Noto Sans:size=10"
+ActiveTaskBarFontName="Noto Sans:size=10:bold"
+ToolTipFontName="Noto Sans:size=10"
+ClockFontName="Noto Sans:size=10"
+
+# --- Keybindings ---
+# Use Rofi for launching applications and switching windows
+KeyWin-d="rofi -show drun"
+KeyWin-Tab="rofi -show window"
 
 # --- Focus and Behavior ---
-FocusMode="FocusSloppy"
-RaiseOnFocus=1
+FocusModel=click
 OpaqueMove=1
 OpaqueResize=1
-ShowMoveSize=1
 
 # --- Taskbar Settings ---
 ShowTaskBar=1
 TaskBarAtTop=0 # 0=bottom, 1=top
-# A more user-friendly clock format (e.g., "Tuesday, October 14, 02:30 PM")
-TimeFormat="%A, %B %d, %I:%M %p"
+TimeFormat="%a %b %d, %I:%M %p" # e.g., "Tue Oct 14, 02:30 PM"
 TaskBarClockToolTip="%A, %B %d, %Y"
 
 # --- Workspace Settings ---
 ShowWorkspaceSwitcher=1
-# Give workspaces user-friendly names
-WorkspaceNames=" 1:Web ", " 2:Files ", " 3:Work ", " 4:Term "
+WorkspaceNames=" 1:Web ", " 2:Files ", " 3:Term ", " 4:Misc "

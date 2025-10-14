@@ -1,0 +1,40 @@
+# Javelin-Dark IceWM Theme
+
+# Font for window titles
+TitleFontName="Noto Sans:size=10:bold"
+
+# Style for the taskbar
+TaskBarLook=flat
+TaskBarClockLeds=0
+TaskBarShowClock=1
+TaskBarShowAPMStatus=0
+TaskBarShowMailboxStatus=0
+TaskBarShowWindows=1
+TaskBarShowShowDesktopButton=1
+TaskBarShowTray=1
+
+# Colors
+ColorActiveTitleBar="#458588"
+ColorActiveTitleBarText="#282828"
+ColorNormalTitleBar="#282828"
+ColorNormalTitleBarText="#ebdbb2"
+ColorScrollBar="#282828"
+ColorButton="#282828"
+ColorButtonText="#ebdbb2"
+ColorActiveButton="#458588"
+ColorActiveButtonText="#282828"
+ColorMenu="#282828"
+ColorMenuText="#ebdbb2"
+ColorActiveMenu="#458588"
+ColorActiveMenuText="#282828"
+ColorTaskBar="#282828"
+ColorTaskBarText="#ebdbb2"
+ColorNormalTaskBarApp="#282828"
+ColorNormalTaskBarAppText="#ebdbb2"
+ColorActiveTaskBarApp="#458588"
+ColorActiveTaskBarAppText="#282828"
+
+# Borders
+BorderSize=1
+TitleBarHeight=24
+CornerSize=0

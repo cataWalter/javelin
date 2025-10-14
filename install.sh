@@ -39,7 +39,7 @@ PKGS_PRINTING=(
     cups system-config-printer sane-utils
 )
 PKGS_APPLICATIONS=(
-    firefox-esr celluloid pinta abiword gnumeric atril mousepad ristretto
+    firefox-esr celluloid pinta abiword gnumeric atril mousepad ristretto qbittorrent
 )
 PKGS_MEDIA_SUPPORT=(
     gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly
@@ -56,6 +56,7 @@ PKGS_SYSTEM_UTILITIES=(
     ttf-mscorefonts-installer
     zram-tools xfce4-terminal
     thermald irqbalance preload
+    flatpak
 )
 PKGS_FONTS=(
     fonts-noto-cjk fonts-indic fonts-arabeyes
