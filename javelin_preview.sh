@@ -1,8 +1,9 @@
 #!/bin/bash
 
-# JAVELIN PREVIEW FIXER
-# ---------------------
-# Fixes package names for Devuan Excalibur/Trixie
+# JAVELIN PREVIEW (ULTRA LEAN EDITION)
+# ------------------------------------
+# Installs Javelin without "Recommended" bloat.
+# Target: Devuan Excalibur
 
 if [ "$(id -u)" -ne 0 ]; then
    echo "Run as root: su -"
@@ -12,27 +13,30 @@ fi
 echo ">>> [1/4] Updating Repos..."
 apt-get update
 
-echo ">>> [2/4] Installing Corrected Package List..."
-# CHANGES:
-# - Removed 'icewm-themes' (included in base now)
-# - Replaced 'cpufrequtils' with 'linux-cpupower'
-# - Replaced 'neofetch' with 'fastfetch'
-# - Added '-y' to force install without asking
+echo ">>> [2/4] Installing Minimal Package List..."
+# --no-install-recommends : The magic flag for minimalism
+# dbus-x11 : Required for IPC in minimal window managers
+# ca-certificates : Required for SSL/HTTPS (sometimes missed in minimal installs)
 
-apt-get install -y \
+apt-get install -y --no-install-recommends \
     linux-image-liquorix-amd64 linux-headers-liquorix-amd64 \
     icewm icewm-common slim lxappearance nitrogen dunst numlockx \
     thunar thunar-volman thunar-archive-plugin gvfs-backends gvfs-fuse tumbler \
     kitty chromium chromium-l10n qbittorrent mpv viewnior geany gparted synaptic \
-    linux-cpupower msr-tools lm-sensors htop fastfetch curl wget
+    linux-cpupower msr-tools lm-sensors htop fastfetch curl wget \
+    dbus-x11 ca-certificates xorg xserver-xorg-video-all
 
-# Check if install succeeded
 if [ $? -ne 0 ]; then
-    echo "!!! ERROR: Software installation failed again. Check your internet or repos."
+    echo "!!! ERROR: Installation failed."
     exit 1
 fi
 
-echo ">>> [3/4] Re-applying Configs..."
+echo ">>> [3/4] Cleaning up Bloat..."
+# This attempts to remove packages that were auto-installed previously
+# but are no longer strictly needed.
+apt-get autoremove -y
+
+echo ">>> [4/4] Applying Configs..."
 
 # 1. Configure Kitty
 mkdir -p /etc/xdg/kitty
@@ -64,30 +68,24 @@ update-alternatives --set x-terminal-emulator /usr/bin/kitty
 update-alternatives --set x-www-browser /usr/bin/chromium
 update-alternatives --set gnome-www-browser /usr/bin/chromium
 
-echo ">>> [4/4] Installing Optimization Script..."
-# Updated to use 'cpupower' instead of 'cpufreq-set'
+# 4. Optimization Script
 cat <<EOF > /usr/local/bin/javelin-opt.sh
 #!/bin/sh
-# JAVELIN CPU OPTIMIZER
-# 1. Force Performance (using modern cpupower if available)
 if command -v cpupower > /dev/null; then
     cpupower frequency-set -g performance
 else
-    # Fallback to sysfs
     if [ -d /sys/devices/system/cpu ]; then
         for cpu in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do
             [ -f "\$cpu" ] && echo "performance" > "\$cpu"
         done
     fi
 fi
-
-# 2. Network Tweaks (BBR)
 sysctl -w net.core.default_qdisc=fq
 sysctl -w net.ipv4.tcp_congestion_control=bbr
 EOF
 chmod +x /usr/local/bin/javelin-opt.sh
 
-# Inject into rc.local
+# 5. Inject into rc.local
 if [ ! -f /etc/rc.local ]; then
     echo '#!/bin/sh -e' > /etc/rc.local
     echo 'exit 0' >> /etc/rc.local
@@ -98,6 +96,5 @@ if ! grep -q "javelin-opt.sh" /etc/rc.local; then
 fi
 
 echo "---------------------------------------------------"
-echo "SUCCESS! Installation finished."
-echo "Reboot now and select IceWM at the login screen."
+echo "DONE. Reboot and enjoy the Lean Javelin."
 echo "---------------------------------------------------"
